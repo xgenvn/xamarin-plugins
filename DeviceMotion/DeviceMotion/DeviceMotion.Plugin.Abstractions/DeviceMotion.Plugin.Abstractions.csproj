@@ -41,6 +41,7 @@
     <Compile Include="IDeviceMotion.cs" />
     <Compile Include="MotionSensorDelay.cs" />
     <Compile Include="MotionSensorType.cs" />
+    <Compile Include="MotionObject.cs" />
     <Compile Include="MotionVector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MotionSensorValueType.cs" />

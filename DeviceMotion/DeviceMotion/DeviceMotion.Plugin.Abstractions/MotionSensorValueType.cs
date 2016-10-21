@@ -18,6 +18,7 @@ namespace DeviceMotion.Plugin.Abstractions
 		/// <summary>
 		/// Vector value.
 		/// </summary>
-        Vector
+        Vector,
+        Object,
     }
 }

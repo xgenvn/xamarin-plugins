@@ -15,9 +15,9 @@ using MonoTouch.CoreLocation;
 
 namespace DeviceMotion.Plugin
 {
-  /// <summary>
-  /// Implementation for DeviceMotion
-  /// </summary>
+    /// <summary>
+    /// Implementation for DeviceMotion
+    /// </summary>
     /// <summary>
     /// Device motion implementation.
     /// </summary>
@@ -39,11 +39,11 @@ namespace DeviceMotion.Plugin
             locationManager.HeadingFilter = 1;
 
             sensorStatus = new Dictionary<MotionSensorType, bool>(){
-				{ MotionSensorType.Accelerometer, false},
-				{ MotionSensorType.Gyroscope, false},
-				{ MotionSensorType.Magnetometer, false},
+                { MotionSensorType.Accelerometer, false},
+                { MotionSensorType.Gyroscope, false},
+                { MotionSensorType.Magnetometer, false},
                 { MotionSensorType.Compass, false}
-			};
+            };
         }
 
 
@@ -71,14 +71,15 @@ namespace DeviceMotion.Plugin
                     }
                     else
                     {
-                      Debug.WriteLine("Accelerometer not available");
+                        Debug.WriteLine("Accelerometer not available");
                     }
                     break;
                 case MotionSensorType.Gyroscope:
                     if (motionManager.GyroAvailable)
                     {
                         motionManager.GyroUpdateInterval = (double)interval / ms;
-                        motionManager.StartGyroUpdates(NSOperationQueue.CurrentQueue, OnGyroscopeChanged);
+                        //motionManager.StartGyroUpdates(NSOperationQueue.CurrentQueue, OnGyroscopeChanged);
+                        motionManager.StartDeviceMotionUpdates(NSOperationQueue.CurrentQueue, OnDeviceMotionUpdated);
                     }
                     else
                     {
@@ -116,8 +117,8 @@ namespace DeviceMotion.Plugin
             if (SensorValueChanged == null)
                 return;
 
-            SensorValueChanged(this, new SensorValueChangedEventArgs { ValueType= MotionSensorValueType.Single, SensorType = MotionSensorType.Compass, Value = new MotionValue{ Value=e.NewHeading.TrueHeading }});
-   
+            SensorValueChanged(this, new SensorValueChangedEventArgs { ValueType = MotionSensorValueType.Single, SensorType = MotionSensorType.Compass, Value = new MotionValue { Value = e.NewHeading.TrueHeading } });
+
         }
 
 
@@ -155,12 +156,25 @@ namespace DeviceMotion.Plugin
         /// </summary>
         /// <param name="data">Data.</param>
         /// <param name="error">Error.</param>
-        private void OnGyroscopeChanged(CMGyroData data, NSError error)
+        private void OnDeviceMotionUpdated(CMDeviceMotion data, NSError error)
         {
             if (SensorValueChanged == null)
                 return;
 
-            SensorValueChanged(this, new SensorValueChangedEventArgs { ValueType = MotionSensorValueType.Vector, SensorType = MotionSensorType.Gyroscope, Value = new MotionVector() { X = data.RotationRate.x, Y = data.RotationRate.y, Z = data.RotationRate.z } });
+            SensorValueChanged(this, new SensorValueChangedEventArgs
+            {
+                ValueType = MotionSensorValueType.Object,
+                SensorType = MotionSensorType.Gyroscope,
+                Value = new MotionObject()
+                {
+                    ValueObject = new
+                    {
+                        RotationRate = new double[] { data.RotationRate.x, data.RotationRate.y, data.RotationRate.z },
+                        AttitudeQuarternion = new double[] { data.Attitude.Quaternion.x, data.Attitude.Quaternion.y, data.Attitude.Quaternion.z, data.Attitude.Quaternion.w},
+                        AttitudeYawPitchRoll = new double[] { data.Attitude.Yaw, data.Attitude.Pitch, data.Attitude.Roll}
+                    }
+                }
+            });
 
         }
 
@@ -194,7 +208,7 @@ namespace DeviceMotion.Plugin
                     if (CLLocationManager.HeadingAvailable)
                     {
                         locationManager.StopUpdatingHeading();
-                        locationManager.UpdatedHeading-= OnHeadingChanged;
+                        locationManager.UpdatedHeading -= OnHeadingChanged;
                     }
                     else
                     {
