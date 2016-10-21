@@ -167,7 +167,7 @@ namespace DeviceMotion.Plugin
                 SensorType = MotionSensorType.Gyroscope,
                 Value = new MotionObject()
                 {
-                    ValueObject = new
+                    ValueObject = new MotionObjectValue()
                     {
                         RotationRate = new double[] { data.RotationRate.x, data.RotationRate.y, data.RotationRate.z },
                         AttitudeQuarternion = new double[] { data.Attitude.Quaternion.x, data.Attitude.Quaternion.y, data.Attitude.Quaternion.z, data.Attitude.Quaternion.w},

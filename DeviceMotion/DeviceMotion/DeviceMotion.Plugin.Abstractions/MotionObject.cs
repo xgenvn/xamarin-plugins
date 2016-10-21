@@ -7,20 +7,20 @@ namespace DeviceMotion.Plugin.Abstractions
 	/// </summary>
 	public class  MotionObject: MotionValue
 	{
-	    /// <summary>
-	    /// Gets or sets the object.
-	    /// </summary>
-	    /// <value>The object.</value>
-	    public object ValueObject { get; set; }
+		/// <summary>
+		/// Gets or sets the object.
+		/// </summary>
+		/// <value>The object.</value>
+		public MotionObjectValue ValueObject { get; set; }
 
-	    /// <summary>
-        /// Vector to string
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-	    {
-	        return ValueObject.ToString();
-	    }
+		/// <summary>
+		/// Vector to string
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			return ValueObject.ToString();
+		}
 
 		/// <summary>
 		/// Gets total value.

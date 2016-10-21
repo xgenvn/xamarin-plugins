@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDeviceMotion.cs" />
+    <Compile Include="MotionObjectValue.cs" />
     <Compile Include="MotionSensorDelay.cs" />
     <Compile Include="MotionSensorType.cs" />
     <Compile Include="MotionObject.cs" />
