@@ -9,16 +9,16 @@ namespace DeviceMotion.Plugin.Abstractions
 	/// <summary>
 	/// Motion sensor value type.
 	/// </summary>
-    public enum MotionSensorValueType
-    {
+	public enum MotionSensorValueType
+	{
 		/// <summary>
 		/// Single value.
 		/// </summary>
-        Single,
+		Single,
 		/// <summary>
 		/// Vector value.
 		/// </summary>
-        Vector,
-        Object,
-    }
+		Vector,
+		Object,
+	}
 }
