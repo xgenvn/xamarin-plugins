@@ -5,10 +5,10 @@
         <version>1.1.7</version>
         <title>Push Notification Plugin for Xamarin</title>
         <authors>rdelrosario</authors>
-        <owners>Rendy Del Rosario</owners>
-        <licenseUrl>https://github.com/rdelrosario/xamarin-plugins/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/rdelrosario/xamarin-plugins</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/rdelrosario/xamarin-plugins/master/PushNotification/Resources/icon.png</iconUrl>
+        <owners>Anh Tu Nguyen</owners>
+        <licenseUrl>https://github.com/xgenvn/xamarin-plugins/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/xgenvn/xamarin-plugins</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/xgenvn/xamarin-plugins/master/PushNotification/Resources/icon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>true</developmentDependency>
         <description>Handle Push Notifications. Across iOS and Android from a single API.</description>
@@ -20,10 +20,10 @@
         <tags>xamarin pcl xam.pcl push notification android ios</tags>
         <dependencies>
             <group>
-                <dependency id="Newtonsoft.Json" version="6.0.5" />
+                <dependency id="Newtonsoft.Json" version="" />
             </group>
             <group targetFramework="MonoAndroid1.0">
-                <dependency id="Xamarin.GooglePlayServices.Gcm" version="25.0.0.0" />
+                <dependency id="Xamarin.GooglePlayServices.Gcm" version="32.961.0" />
             </group>
         </dependencies>
     </metadata>
