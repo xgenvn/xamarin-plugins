@@ -10,8 +10,8 @@ namespace PushNotification.Plugin.Abstractions
   {
 
 	  string Token { get; }
-      void Register();
-      void Unregister();
+	  void Register();
+	  void Unregister();
 
  
   }

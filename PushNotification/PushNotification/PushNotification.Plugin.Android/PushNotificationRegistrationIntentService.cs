@@ -1,18 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Gms.Gcm.Iid;
 using Android.Gms.Gcm;
+using Android.Gms.Iid;
 using PushNotification.Plugin.Abstractions;
-using Android.Support.V4.Content;
 
 namespace PushNotification.Plugin
 {
@@ -33,6 +25,19 @@ namespace PushNotification.Plugin
                 lock (syncLock)
                 {
                     InstanceID instanceID = InstanceID.GetInstance(Android.App.Application.Context);
+
+#if _DEBUG_
+                    try
+                    {
+                        instanceID.DeleteInstanceID();
+                    }
+                    catch (Exception e)
+                    {
+                        Android.Util.Log.Debug(Tag, e.ToString());
+                    }
+                    instanceID = InstanceID.GetInstance(Android.App.Application.Context);
+#endif
+
                     string token = instanceID.GetToken(CrossPushNotification.SenderId,
                         GoogleCloudMessaging.InstanceIdScope, null);
 
